@@ -1,0 +1,126 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #0e0e0e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.black-board{
+  background-color:#2b674f;
+  border:15px solid  #8b5829;
+  color:white;
+  width: 50%;
+  text-align: left;
+  padding: 5px 50px;
+}
+
+
+.option{
+  background-color:transparent;
+  border:1px solid  #fff;
+  color:white;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 10px 25px;
+  /* width: 24%; */
+  font-size: 24px;
+  display: inline;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.option:active{
+  background-color: black;
+}
+.option:visited{
+  background-color: black;
+}
+
+
+.options{
+  text-align: center;
+  margin: 100px 0 30px;
+}
+
+.answers{
+  text-align: left;
+
+}
+p{
+      font-size: 14px;
+}
+.question{
+  text-align: left;
+
+}
+
+
+
+
+.board {
+	  width: 50%;
+    height: auto;
+    margin: 50px auto;
+    padding: 5px 50px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    background-color: rgb(6,116,46);
+    border: 14px solid;
+    font-family: 'Roboto Slab', serif;
+    font-style: italic;
+    border-image: url('http://www.ggeorgiou.gr/wp-content/uploads/2016/09/blackboard.png') 10;
+}
+.next{
+  border: none;
+float: right;
+padding: 0px;
+}
+
+@media only screen and (max-width:500px){
+  .option{
+    padding: 10px !important;
+  }
+
+  .board{
+    width: 60% !important;
+  }
+  .black-board{
+    width: 60% !important;
+  }
+}
+
+
+
+.hid{
+  display: none;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
