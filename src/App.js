@@ -3,55 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import { Link} from 'react-router-dom'
 import axios from 'axios';
-const questions =[
-  {
-    "text": "This is the first question",
-    "options": ["answer1","answer2","answer3","answer4"],
-    "answer": 2
-  },
-  {
-    "text": "This is the second question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 1
-  },
-  {
-    "text": "This is the third question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 3
-  },
-  {
-    "text": "This is the fourth question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 0
-  },
-  {
-    "text": "This is the fifth question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 0
-  },
-  {
-    "text": "This is the sixth question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 3
-  },
-  {
-    "text": "This is the seventh question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 3
-  },
-  {
-    "text": "This is the eighth question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 2
-  }
-]
 var i=0;
-
+var questions;
 class App extends Component {
   constructor(props){
     super(props)
     this.state ={
       i:0,
+      questions:[],
       question:{},
       report:[],
       options:[],
@@ -114,9 +73,10 @@ class App extends Component {
     document.getElementById("next").classList.add("hid")
     i++;
     if(i<8){
+    var question=this.state.questions[i]
       this.setState({
-        question:questions[i],
-        options:questions[i].options,
+        question:question,
+        options:question.options,
         i:i
       });
     }
@@ -127,7 +87,9 @@ class App extends Component {
     axios.get('https://cdn.rawgit.com/santosh-suresh/39e58e451d724574f3cb/raw/784d83b460d6c0150e338c34713f3a1c2371e20a/assignment.json')
     .then(res=>{
       console.log("api response is",res);
+      questions=res.data
       this.setState({
+        questions:res.data,
         question:res.data[0],
         options:res.data[0].options
       });

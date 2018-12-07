@@ -3,55 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import { Link} from 'react-router-dom'
 import axios from 'axios';
-const questions =[
-  {
-    "text": "This is the first question",
-    "options": ["answer1","answer2","answer3","answer4"],
-    "answer": 2
-  },
-  {
-    "text": "This is the second question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 1
-  },
-  {
-    "text": "This is the third question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 3
-  },
-  {
-    "text": "This is the fourth question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 0
-  },
-  {
-    "text": "This is the fifth question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 0
-  },
-  {
-    "text": "This is the sixth question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 3
-  },
-  {
-    "text": "This is the seventh question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 3
-  },
-  {
-    "text": "This is the eighth question",
-    "options": ["answer 1","answer 2","answer 3", "answer 4"],
-    "answer": 2
-  }
-]
 var i=0;
-
+var questions;
 class Apps extends Component {
   constructor(props){
     super(props)
     this.state ={
       i:0,
+      questions:[],
       question:{},
       report:[],
       options:[],
@@ -91,7 +50,6 @@ class Apps extends Component {
 
   }
 
-
   Next = ()=>{
     let report = {};
     report.question = this.state.question;
@@ -115,9 +73,10 @@ class Apps extends Component {
     document.getElementById("next").classList.add("hid")
     i++;
     if(i<8){
+    var question=this.state.questions[i]
       this.setState({
-        question:questions[i],
-        options:questions[i].options,
+        question:question,
+        options:question.options,
         i:i
       });
     }
@@ -128,7 +87,9 @@ class Apps extends Component {
     axios.get('https://cdn.rawgit.com/santosh-suresh/39e58e451d724574f3cb/raw/784d83b460d6c0150e338c34713f3a1c2371e20a/assignment.json')
     .then(res=>{
       console.log("api response is",res);
+      questions=res.data
       this.setState({
+        questions:res.data,
         question:res.data[0],
         options:res.data[0].options
       });
@@ -141,8 +102,8 @@ class Apps extends Component {
        <header className="App-header" id="board">
        <div className="board">
          <div className="question">
-         <span style={{fontSize:"8px"}}>Javascript Quiz {this.state.i+1} of 8</span>
-        <p style={{marginTop:"0px"}}>{this.state.question.text}</p>
+            <span style={{fontSize:"8px"}}>Javascript Quiz {this.state.i+1} of 8</span>
+           <p style={{marginTop:"0px"}}>{this.state.question.text}</p>
          </div>
          <div className="answers">
            <p>A - {this.state.options[0]}</p>
